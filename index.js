@@ -1,9 +1,9 @@
 turn = "x"
 count = 9
 startTurn='x'
-var audio=new Audio('click-47609.mp3')
-var success=new Audio('success-fanfare-trumpets-6185.mp3')
-var fail=new Audio('failure-drum-sound-effect-2-7184.mp3')
+var audio=new Audio('./click-47609.mp3')
+var success=new Audio('./success-fanfare-trumpets-6185.mp3')
+var fail=new Audio('./failure-drum-sound-effect-2-7184.mp3')
 wintable = [
     [0, 1, 2],
     [3, 4, 5],
