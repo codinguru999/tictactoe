@@ -1,9 +1,9 @@
 turn = "x"
 count = 9
 startTurn='x'
-var audio=new Audio('https://github.com/codinguru999/tictactoe/blob/main/click-47609.mp3')
-var success=new Audio('https://github.com/codinguru999/tictactoe/blob/main/failure-drum-sound-effect-2-7184.mp3')
-var fail=new Audio('https://github.com/codinguru999/tictactoe/blob/main/success-fanfare-trumpets-6185.mp3')
+// var audio=new Audio('click-47609.mp3')
+// var success=new Audio('success-fanfare-trumpets-6185.mp3')
+// var fail=new Audio('failure-drum-sound-effect-2-7184.mp3')
 wintable = [
     [0, 1, 2],
     [3, 4, 5],
@@ -30,7 +30,7 @@ function changeturn(tur) {
 }
 function setvalue(e) {
     // console.log(e)
-    audio.play()
+    document.getElementById('click').play()
     
     index = +e.target.id
 
@@ -42,7 +42,7 @@ function setvalue(e) {
         document.getElementById('xwin').style.display = 'none'
         document.getElementById('0win').style.display = 'none'
         document.getElementById('nowin').style.display = 'block'
-        fail.play()
+        document.getElementById('failure').play()
 
     }
     // console.log(e.target.innerHTML)
@@ -67,10 +67,10 @@ function setvalue(e) {
         document.getElementById('nowin').style.display = 'none'
 if(startTurn=='x')
 {
-    success.play()
+    document.getElementById('success').play()
 }
 else{
-    fail.play()
+    document.getElementById('failure').play()
 }
         document.getElementById("Box").addEventListener('click', setvalue)
     }
@@ -82,10 +82,10 @@ else{
         document.getElementById('nowin').style.display = 'none'
         if(startTurn=='0')
         {
-            success.play()
+            document.getElementById('success').play()
         }
         else{
-            fail.play()
+            document.getElementById('failure').play()
         }
         document.getElementById("Box").removeEventListener('click', setvalue)
 
