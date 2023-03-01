@@ -1,5 +1,9 @@
 turn = "x"
 count = 9
+startTurn='x'
+var audio=new Audio('click-47609.mp3')
+var success=new Audio('success-fanfare-trumpets-6185.mp3')
+var fail=new Audio('failure-drum-sound-effect-2-7184.mp3')
 wintable = [
     [0, 1, 2],
     [3, 4, 5],
@@ -10,18 +14,38 @@ wintable = [
     [0, 4, 8],
     [2, 4, 6]
 ]
-function changeturn(tur){
-    turn=tur
+function showturnselect(e) {
+    e.target.disabled=true
+    document.getElementById('turnselect').classList.remove('d-none')
+    document.getElementById('turnselect').classList.add('d-flex')
+}
+function changeturn(tur) {
+    document.getElementById("Box").addEventListener('click', setvalue)
+    document.getElementById('x').disabled = true
+    document.getElementById('0').disabled = true
+    turn = tur
+    startTurn=tur
+    // document.getElementById('turnselect').classList.remove('d-flex')
+    // document.getElementById('turnselect').classList.add('d-none')
 }
 function setvalue(e) {
     // console.log(e)
+    audio.play()
+    
     index = +e.target.id
 
     count--
     if (count == 0) {
-        alert("no one wins")
+        // alert("no one wins")
+        document.getElementById('winselect').classList.remove('d-none')
+        document.getElementById('winselect').classList.add('d-flex')
+        document.getElementById('xwin').style.display = 'none'
+        document.getElementById('0win').style.display = 'none'
+        document.getElementById('nowin').style.display = 'block'
+        fail.play()
+
     }
-    // console.log(typeof e.target.id)
+    // console.log(e.target.innerHTML)
     if (e.target.innerText == '') {
         e.target.innerText = turn
         if (turn == 'x') {
@@ -33,22 +57,44 @@ function setvalue(e) {
             turn = 'x'
             setzero(index)
         }
-        x = checkwin()
-        if (x == 'x') {
-            console.log('x is winner')
-            alert('x wins')
-            location.reload()
-        }
-        else if (x == '0') {
-            console.log('0 is winner')
-            alert('o wins')
-            location.reload()
-
-        }
-        else {
-            console.log('carry on')
-        }
     }
+    x = checkwin()
+    if (x == 'x') {
+        document.getElementById('winselect').classList.remove('d-none')
+        document.getElementById('winselect').classList.add('d-flex')
+        document.getElementById('xwin').style.display = 'block'
+        document.getElementById('0win').style.display = 'none'
+        document.getElementById('nowin').style.display = 'none'
+if(startTurn=='x')
+{
+    success.play()
+}
+else{
+    fail.play()
+}
+        document.getElementById("Box").addEventListener('click', setvalue)
+    }
+    else if (x == '0') {
+        document.getElementById('winselect').classList.remove('d-none')
+        document.getElementById('winselect').classList.add('d-flex')
+        document.getElementById('xwin').style.display = 'none'
+        document.getElementById('0win').style.display = 'block'
+        document.getElementById('nowin').style.display = 'none'
+        if(startTurn=='0')
+        {
+            success.play()
+        }
+        else{
+            fail.play()
+        }
+        document.getElementById("Box").removeEventListener('click', setvalue)
+
+    }
+    else {
+        console.log('carry on')
+
+    }
+
 }
 
 function setx(id) {
@@ -65,21 +111,21 @@ function setx(id) {
 function setzero(id) {
     for (x of wintable) {
         for (let i = 0; i < x.length; i++) {
-            if (x[i] ==- id) {
+            if (x[i] == id) {
                 x[i] = '0'
             }
         }
     }
-    console.log(wintable)
+    // console.log(wintable)
 }
 function checkwin() {
     for (x of wintable) {
-        console.log(x)
+        // console.log(x)
         if (x.every((el) => el === 'x')) {
             return 'x'
         }
         else if (x.every((el) => el === '0')) {
-            return 'o'
+            return '0'
         }
     }
     return 'no'
