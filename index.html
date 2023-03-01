@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman Game</title>
 </head>
+
 <body>
-    
+
 </body>
-</html><!doctype html>
+
+</html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -20,49 +24,69 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
-<body>
-   <div class="container-fluid d-flex flex-column justify-content-center align-items-center h-100">
-    <div class="container d-flex flex-column justify-content-center align-items-center m-3 p-2">
-        <h1 class="text-primary text-center m-1 p-1">Tic-Tac-Toe Game</h1>
+<body class="bg-dark">
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center h-100">
+        <div class="container d-flex flex-column justify-content-center align-items-center m-3 p-2">
+            <h1 class="text-primary text-center m-1 p-1">Tic-Tac-Toe Game</h1>
+            <div class="container d-flex flex-row justify-content-center align-items-center m-auto ">
+                <button class="btn btn-primary m-2 p-1" onclick="showturnselect(event)">Start</button>
+                <button class="btn btn-primary m-2 p-1" onclick="location.reload()">Reset</button>
+            </div>
+            <div class="container w-25 d-none flex-column justify-content-center align-item-center" id="turnselect">
+                <h3 class="text-light">Choose Your turn</h3>
+                <!-- <div class="container bg-info-subtle rounded p-2 m-auto">Start Game by choosing Your Turn</div> -->
+                <div class="container w-50 d-flex flex-row justify-content-center align-item-center">
 
-<div class="container w-25 d-flex flex-column justify-content-center align-item-center">
-    <h3>Choose Your turn</h3>
-    <div class="container w-50 d-flex flex-row justify-content-center align-item-center">
-
-        <button class="btn btn-primary m-2 p-2" onclick="changeturn('x')">X</button>
-        <button class="btn btn-primary m-2 p-2" onclick="changeturn('0')">0</button>
-    </div>
-</div>
-    </div>
-    <div class="container w-50">
-        <div class="container w-50 text-center fs-1" onclick="setvalue(event)">
-            <div class="row">
-              <div class="col border border-2 border-primary bg-info-subtle px-1  py-2 m-1" id="0" style="width: 25px; height: 80px;">
-              </div>
-              <div class="col border border-2 border-primary bg-info-subtle px-1  py-2 m-1" id="1" style="width: 25px; height: 80px;">
-              </div>
-              <div class="col border border-2 border-primary bg-info-subtle px-1  py-2 m-1" id="2" style="width: 25px; height: 80px;">
-              </div>
+                    <button class="btn btn-primary m-2 p-2" id="x" onclick="changeturn('x')">X</button>
+                    <button class="btn btn-primary m-2 p-2" id="0" onclick="changeturn('0')">0</button>
+                </div>
             </div>
-            <div class="row">
-              <div class="col border border-2 border-primary bg-info-subtle px-1  py-2 m-1" id="3" style="width: 25px; height: 80px;">
-              </div>
-              <div class="col border border-2 border-primary bg-info-subtle px-1  py-2 m-1" id="4" style="width: 25px; height: 80px;">
-              </div>
-              <div class="col border border-2 border-primary bg-info-subtle px-1  py-2 m-1" id="5" style="width: 25px; height: 80px;">
-              </div>
+            <div class="container my-2 w-25 d-none flex-column justify-content-center align-item-center" id="winselect">
+                <h3 class="text-success text-center" id="xwin">X Wins</h3>
+                <h3 class="text-success text-center" id="0win">0 Wins</h3>
+                <h3 class="text-danger text-center" id="nowin">No one Wins</h3>
+                <!-- <div class="container bg-info-subtle rounded p-2 m-auto">Start Game by choosing Your Turn</div> -->
+                
             </div>
-            <div class="row">
-              <div class="col border border-2 border-primary bg-info-subtle px-1  py-2 m-1" id="6" style="width: 25px; height: 80px;">
-              </div>
-              <div class="col border border-2 border-primary bg-info-subtle px-1  py-2 m-1" id="7" style="width: 25px; height: 80px;">
-              </div>
-              <div class="col border border-2 border-primary bg-info-subtle px-1  py-2 m-1" id="8" style="width: 25px; height: 80px;">
-              </div>
+        </div>
+        <div class="container  w-50">
+            <div class="container  w-50 text-center fs-1" id="Box">
+                <div class="row">
+                    <div class="col border border-1 border-start-0 border-top-0 border-primary bg-secondary px-1  py-2" id="0"
+                        style="width: 25px; height: 80px;">
+                    </div>
+                    <div class="col border  border-top-0 border-1 border-primary bg-secondary px-1  py-2" id="1"
+                        style="width: 25px; height: 80px;">
+                    </div>
+                    <div class="col border border-end-0 border-top-0 border-1 border-primary bg-secondary px-1  py-2" id="2"
+                        style="width: 25px; height: 80px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col border border-start-0  border-1 border-primary bg-secondary px-1  py-2" id="3"
+                        style="width: 25px; height: 80px;">
+                    </div>
+                    <div class="col border  border-1 border-primary bg-secondary px-1  py-2" id="4"
+                        style="width: 25px; height: 80px;">
+                    </div>
+                    <div class="col border border-end-0 border-1 border-primary bg-secondary px-1  py-2" id="5"
+                        style="width: 25px; height: 80px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col border border-start-0 border-bottom-0 border-1 border-primary bg-secondary px-1  py-2" id="6"
+                        style="width: 25px; height: 80px;">
+                    </div>
+                    <div class="col border border-bottom-0 border-1 border-primary bg-secondary px-1  py-2" id="7"
+                        style="width: 25px; height: 80px;">
+                    </div>
+                    <div class="col border border-end-0 border-bottom-0 border-1 border-primary bg-secondary px-1  py-2" id="8"
+                        style="width: 25px; height: 80px;">
+                    </div>
+                </div>
             </div>
-          </div>
+        </div>
     </div>
-   </div>
 
 
 
